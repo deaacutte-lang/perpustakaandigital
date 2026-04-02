@@ -49,91 +49,28 @@
             <nav class="flex-1 py-6">
                 <ul class="space-y-2">
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/dashboard">
                         <i class="fa-solid fa-house w-4"></i> Dhasboard
                     </li>
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/dashboard">
                         <i class="fa-solid fa-chart-simple w-4 text-center"></i> Data transaksi
                     </li>
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/peminjaman">
                         <i class="fa-solid fa-cube w-4 text-center"></i> peminjaman
                     </li>
                     <li class="active-menu px-8 py-2.5 flex items-center gap-4 text-xs transition ml-4">
-                        <a href="/pengembalian">
                         <i class="fa-solid fa-hand-holding w-4 text-center"></i> pengembalian
                     </li>
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/catatan">
                         <i class="fa-solid fa-list w-4 text-center"></i> Catatan
                     </li>
                 </ul>
             </nav>
         </aside>
-     <main class="flex-1 p-12 relative flex flex-col">
+        <main class="flex-1 p-12 relative flex flex-col">
             
                 <div class="relative w-1/2">
                     <input type="text" placeholder="Hinted search text" class="w-full py-3 px-12 rounded-full bg-white/70 focus:outline-none shadow-inner">
                     <i class="fas fa-bars absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                     <i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
                 </div>
-
-            <section class="mb-10">
-                <div class="bg-[#E2E2E2] rounded-3xl p-6 mb-8 shadow-md">
-
-    <h2 class="text-sm font-bold mb-4 uppercase">NOVEL</h2>
-
-    <!-- WRAPPER SCROLL -->
-    <div class="flex gap-6 overflow-x-auto pb-2 scrollbar-hide">
-
-        <!-- ITEM -->
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-teal-600 rounded-lg shadow flex items-center justify-center text-white">
-                Dilan 1990
-            </div>
-            <p class="text-xs mt-2 font-semibold">DILAN 1990</p>
-
-            <div class="flex justify-center gap-2 mt-1">
-                <button class="text-[10px] px-2 bg-gray-300 rounded">detail</button>
-                <button class="text-[10px] px-2 bg-gray-300 rounded">pinjam</button>
-            </div>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-red-400 rounded-lg shadow flex items-center justify-center text-white">
-                Laskar Pelangi
-            </div>
-            <p class="text-xs mt-2 font-semibold">LASKAR PELANGI</p>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-yellow-600 rounded-lg shadow flex items-center justify-center text-white">
-                Angkasa 56
-            </div>
-            <p class="text-xs mt-2 font-semibold">ANGKASA 56</p>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-gray-700 rounded-lg shadow flex items-center justify-center text-white">
-                Buku 4
-            </div>
-            <p class="text-xs mt-2 font-semibold">BUKU 4</p>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-blue-500 rounded-lg shadow flex items-center justify-center text-white">
-                Buku 5
-            </div>
-            <p class="text-xs mt-2 font-semibold">BUKU 5</p>
-        </div>
-
-    </div>
-</div>
-            </section>
-
-        </main>
-    </div>
-
-</body>
-</html>
+</main>

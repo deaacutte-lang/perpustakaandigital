@@ -8,10 +8,8 @@ Route::get('/', function () {
 });
     Route::view('/login','login');
     Route::view('/dasboard','dasboard');
-    Route::view('/register','register');
     Route::view('/peminjaman','peminjaman');
-    Route::view('/peminjaman1','peminjaman1');
-   Route::view('/transaksi1', 'transaksi1');
-
-Route::post('/transaksi', [Transaksi1Controller::class, 'store'])
-    ->name('transaksi.store');
+    Route::view('/pengembalian','pengembalian');
+    Route::view('/halamanbuku','halamanbuku');
+    Route::view('/catatan','catatan');
+    

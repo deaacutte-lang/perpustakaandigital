@@ -62,12 +62,14 @@
                 </div>
             </div>
 
-            <div class="pt-4">
-                <button type="submit" 
-                    class="w-full bg-[#B8B3AE] hover:bg-pink-500 hover:text-white text-gray-800 font-bold text-lg py-3 rounded-xl border border-black/10 transition-all shadow-md active:scale-[0.98]">
-                    LOGIN
-                </button>
-            </div>
+           <div class="pt-4">
+    <a href="/dasboard" class="block w-full">
+        <button type="button" 
+            class="w-full bg-[#B8B3AE] hover:bg-pink-500 hover:text-white text-gray-800 font-bold text-lg py-3 rounded-xl border border-black/10 transition-all shadow-md active:scale-[0.98]">
+            LOGIN
+        </button>
+    </a>
+</div>
         </form>
 
         <p class="mt-8 text-xs text-gray-600">

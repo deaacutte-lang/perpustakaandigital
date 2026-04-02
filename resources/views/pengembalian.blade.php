@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Dashboard</title>
+    <title>Library - pengembalian</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
         
         body { font-family: 'Inter', sans-serif; background-color: #D9D9D9; overflow: hidden; }
         .bg-sidebar { background-color: #E2E2E2; }
@@ -49,89 +48,75 @@
             <nav class="flex-1 py-6">
                 <ul class="space-y-2">
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/dashboard">
                         <i class="fa-solid fa-house w-4"></i> Dhasboard
                     </li>
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/dashboard">
                         <i class="fa-solid fa-chart-simple w-4 text-center"></i> Data transaksi
                     </li>
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/peminjaman">
                         <i class="fa-solid fa-cube w-4 text-center"></i> peminjaman
                     </li>
                     <li class="active-menu px-8 py-2.5 flex items-center gap-4 text-xs transition ml-4">
-                        <a href="/pengembalian">
                         <i class="fa-solid fa-hand-holding w-4 text-center"></i> pengembalian
                     </li>
                     <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <a href="/catatan">
                         <i class="fa-solid fa-list w-4 text-center"></i> Catatan
                     </li>
                 </ul>
             </nav>
         </aside>
-     <main class="flex-1 p-12 relative flex flex-col">
+
+        <main class="flex-1 p-12 relative flex flex-col">
             
-                <div class="relative w-1/2">
-                    <input type="text" placeholder="Hinted search text" class="w-full py-3 px-12 rounded-full bg-white/70 focus:outline-none shadow-inner">
-                    <i class="fas fa-bars absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            <div class="absolute top-8 right-12 space-y-1 cursor-pointer group">
+                <div class="w-10 h-1 bg-black rounded-full transition-all group-hover:w-6"></div>
+                <div class="w-10 h-1 bg-black rounded-full"></div>
+                <div class="w-10 h-1 bg-black rounded-full transition-all group-hover:w-6 group-hover:ml-4"></div>
+            </div>
+
+            <div class="mb-8">
+                <span class="text-[10px] text-gray-600 block italic font-semibold">Halaman</span>
+                <h1 class="text-4xl font-serif tracking-widest border-b-2 border-black inline-block pb-1 uppercase italic">PENGEMBALIAN</h1>
+            </div>
+
+            <div class="bg-[#E2E2E2] rounded-[2.5rem] p-10 shadow-xl relative max-w-3xl border border-gray-300/50">
+                
+                <form class="space-y-6">
+                    <div class="flex items-center gap-8">
+                        <label class="font-bold text-xs border-b border-black w-48 uppercase tracking-tighter">ID USER</label>
+                        <input type="text" class="custom-input flex-1 bg-white rounded-xl py-3 px-6 shadow-sm outline-none text-sm font-semibold" placeholder="...">
+                    </div>
+                    
+                    <div class="flex items-center gap-8">
+                        <label class="font-bold text-xs border-b border-black w-48 uppercase tracking-tighter">ID BUKU</label>
+                        <input type="text" class="custom-input flex-1 bg-white rounded-xl py-3 px-6 shadow-sm outline-none text-sm font-semibold" placeholder="...">
+                    </div>
+
+                    <div class="flex items-center gap-8">
+                        <label class="font-bold text-xs border-b border-black w-48 uppercase tracking-tighter text-wrap">TANGGAL PINJAM</label>
+                        <input type="text" class="custom-input flex-1 bg-white rounded-xl py-3 px-6 shadow-sm outline-none text-sm font-semibold" placeholder="...">
+                    </div>
+
+                    <div class="flex items-center gap-8">
+                        <label class="font-bold text-xs border-b border-black w-48 uppercase tracking-tighter leading-tight">TANGGAL PENGEMBALIAN</label>
+                        <input type="text" class="custom-input flex-1 bg-white rounded-xl py-3 px-6 shadow-sm outline-none text-sm font-semibold" placeholder="...">
+                    </div>
+
+                    <div class="flex justify-end pt-4">
+                        <button type="button" class="bg-white text-black font-black py-3 px-10 rounded-xl shadow-md hover:bg-black hover:text-white transition-all tracking-widest text-[10px] uppercase border border-gray-100 active:scale-95">
+                            KEMBALIKAN
+                        </button>
+                    </div>
+                </form>
+
+                <div class="absolute -bottom-2 -left-2 opacity-10 pointer-events-none scale-75">
+                    <svg width="150" height="150" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 100C10 50 40 10 90 10" stroke="black" stroke-width="4" />
+                        <path d="M25 100C25 60 45 35 90 35" stroke="black" stroke-width="4" />
+                        <path d="M40 100C40 70 55 50 90 50" stroke="black" stroke-width="4" />
+                    </svg>
                 </div>
-
-            <section class="mb-10">
-                <div class="bg-[#E2E2E2] rounded-3xl p-6 mb-8 shadow-md">
-
-    <h2 class="text-sm font-bold mb-4 uppercase">NOVEL</h2>
-
-    <!-- WRAPPER SCROLL -->
-    <div class="flex gap-6 overflow-x-auto pb-2 scrollbar-hide">
-
-        <!-- ITEM -->
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-teal-600 rounded-lg shadow flex items-center justify-center text-white">
-                Dilan 1990
             </div>
-            <p class="text-xs mt-2 font-semibold">DILAN 1990</p>
-
-            <div class="flex justify-center gap-2 mt-1">
-                <button class="text-[10px] px-2 bg-gray-300 rounded">detail</button>
-                <button class="text-[10px] px-2 bg-gray-300 rounded">pinjam</button>
-            </div>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-red-400 rounded-lg shadow flex items-center justify-center text-white">
-                Laskar Pelangi
-            </div>
-            <p class="text-xs mt-2 font-semibold">LASKAR PELANGI</p>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-yellow-600 rounded-lg shadow flex items-center justify-center text-white">
-                Angkasa 56
-            </div>
-            <p class="text-xs mt-2 font-semibold">ANGKASA 56</p>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-gray-700 rounded-lg shadow flex items-center justify-center text-white">
-                Buku 4
-            </div>
-            <p class="text-xs mt-2 font-semibold">BUKU 4</p>
-        </div>
-
-        <div class="min-w-[140px] text-center">
-            <div class="h-40 bg-blue-500 rounded-lg shadow flex items-center justify-center text-white">
-                Buku 5
-            </div>
-            <p class="text-xs mt-2 font-semibold">BUKU 5</p>
-        </div>
-
-    </div>
-</div>
-            </section>
-
         </main>
     </div>
 
