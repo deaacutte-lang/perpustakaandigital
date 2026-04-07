@@ -1,76 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; background-color: #D9D9D9; overflow: hidden; }
-        .bg-sidebar { background-color: #E2E2E2; }
-        .bg-main-card { background-color: #C7C3BC; }
-        .active-menu { background-color: #D3CECA; border-radius: 40px 0 0 40px; font-weight: 700; }
-        
-        .custom-input {
-            transition: all 0.2s ease;
-        }
-        .custom-input:focus {
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transform: translateY(-1px);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>Library Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen w-screen flex items-center justify-center m-0 p-0">
 
-    <div class="w-full h-full bg-main-card flex overflow-hidden">
+<body class="bg-gray-100">
+
+<div class="flex h-screen w-[1280px] mx-auto">
+
+    <!-- SIDEBAR -->
+    <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col">
         
-        <aside class="w-[20%] max-w-[280px] bg-sidebar flex flex-col border-r border-gray-400 h-full">
-            <div class="p-6 border-b border-gray-400 flex items-center gap-3">
-                <div class="w-10 h-8 bg-gradient-to-br from-pink-400 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
-                    <i class="fa-solid fa-book-open text-white text-base"></i>
-                </div>
-                <span class="text-xl font-extrabold tracking-tighter">LIBRARY</span>
-            </div>
+        <!-- LOGO -->
+        <div class="p-4 border-b">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                📖 LIBRARY
+            </h1>
+        </div>
 
-            <div class="p-6 text-center border-b border-gray-400">
-                <div class="w-20 h-20 mx-auto rounded-full bg-slate-900 overflow-hidden mb-3 border-2 border-white shadow-lg">
-                    <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=qalea" alt="Avatar" class="w-full h-full object-cover">
-                </div>
-                <h3 class="font-bold text-[9px] tracking-widest text-gray-500 uppercase">ANGGOTA :</h3>
-                <p class="text-xs font-bold uppercase text-black">Qalea Azahrz</p>
-                <p class="text-[9px] text-gray-500 italic">azhrzalea@gmail.com</p>
-            </div>
+        <!-- PROFILE -->
+        <div class="text-center py-6 border-b">
+            <img src="https://i.pravatar.cc/100" class="w-20 h-20 rounded-full mx-auto mb-3">
+            <p class="font-semibold">ANGGOTA :</p>
+            <p class="text-sm">QALEA ALZAHRAZ</p>
+            <p class="text-xs text-gray-500">AZHRAZLEA@GMAIL.COM</p>
+        </div>
 
-            <nav class="flex-1 py-6">
-                <ul class="space-y-2">
-                    <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <i class="fa-solid fa-house w-4"></i> Dhasboard
-                    </li>
-                    <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <i class="fa-solid fa-chart-simple w-4 text-center"></i> Data transaksi
-                    </li>
-                    <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <i class="fa-solid fa-cube w-4 text-center"></i> peminjaman
-                    </li>
-                    <li class="active-menu px-8 py-2.5 flex items-center gap-4 text-xs transition ml-4">
-                        <i class="fa-solid fa-hand-holding w-4 text-center"></i> pengembalian
-                    </li>
-                    <li class="px-8 py-2.5 flex items-center gap-4 text-xs font-medium hover:bg-gray-300 transition cursor-pointer ml-4">
-                        <i class="fa-solid fa-list w-4 text-center"></i> Catatan
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="flex-1 p-12 relative flex flex-col">
-            
-                <div class="relative w-1/2">
-                    <input type="text" placeholder="Hinted search text" class="w-full py-3 px-12 rounded-full bg-white/70 focus:outline-none shadow-inner">
-                    <i class="fas fa-bars absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+        <!-- MENU -->
+         <!-- MENU -->
+        <div class="p-4 space-y-3 text-sm">
+
+            <a href="/dasboard" class="block">
+                <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
+            </a>
+
+            <a href="/halamanbuku" class="block">
+                <div class="flex items-center gap-2">📊 <span>Halaman Buku</span></div>
+            </a>
+
+            <a href="/peminjaman" class="block">
+                <div class="flex items-center gap-2">📦 <span>Peminjaman</span></div>
+            </a>
+
+            <a href="/pengembalian" class="block">
+                <div class="flex items-center gap-2">🔄 <span>Pengembalian</span></div>
+            </a>
+
+            <a href="/catatan" class="block">
+                <div class="flex items-center gap-2">📈 <span>Catatan</span></div>
+            </a>
+
+            <a href="/login" class="block pt-4 text-red-500 hover:text-red-700">
+                <div class="flex items-center gap-2">
+                    <span>Logout</span>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                 </div>
-</main>
+            </a>
+
+        </div>
+    </div>
+    <div class="bg-[#d6d0cb] p-6 rounded-2xl w-full h-full">
+
+    <!-- NAVBAR -->
+    <div class="flex justify-between items-start mb-6">
+        <div>
+            <p class="text-xs text-gray-600">halaman</p>
+            <h1 class="text-xl font-semibold">Catatan peminjaman buku</h1>
+        </div>
+
+        <div class="text-2xl cursor-pointer">
+            ☰
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="bg-[#e5e1dd] rounded-2xl p-6">
+
+        <!-- PENJELASAN -->
+        <div class="mb-6 text-sm leading-relaxed">
+            <p class="font-semibold mb-2">
+                📌 keterangan Peminjaman Buku
+            </p>
+
+            <p class="mb-2">
+                Peminjam wajib mengembalikan buku sesuai tanggal yang telah ditentukan.
+                Apabila terjadi keterlambatan, maka akan dikenakan denda harian.
+            </p>
+
+            <p class="mb-2">
+                Denda dihitung berdasarkan jumlah hari keterlambatan dengan ketentuan sebagai berikut:
+            </p>
+
+            <ul class="list-disc ml-6 mb-2">
+                <li>Terlambat 1 hari → dikenakan denda sesuai tarif harian</li>
+                <li>Terlambat lebih dari 1 hari → denda akan diakumulasi sesuai jumlah hari keterlambatan</li>
+            </ul>
+
+            <p>
+                Total denda = tarif denda per hari × jumlah hari keterlambatan.
+            </p>
+        </div>
+
+        <!-- JUDUL TABEL -->
+        <div class="mb-4">
+            <p class="font-semibold">
+                📚 Contoh Tabel Denda Keterlambatan Pengembalian Buku
+            </p>
+        </div>
+
+        <!-- TABEL -->
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm text-center border-collapse">
+
+                <thead>
+                    <tr class="border-b border-gray-400">
+                        <th class="py-2">No</th>
+                        <th>Hari keterlambatan</th>
+                        <th>Tarif Denda/Hari</th>
+                        <th>Total Denda</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="border-b border-gray-300">
+                        <td class="py-3">1</td>
+                        <td>1 hari</td>
+                        <td>Rp.60.000</td>
+                        <td>Rp.60.000</td>
+                    </tr>
+
+                    <tr>
+                        <td class="py-3">2</td>
+                        <td>2 hari</td>
+                        <td>Rp.60.000</td>
+                        <td>Rp.120.000</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+    </body>
+</html>

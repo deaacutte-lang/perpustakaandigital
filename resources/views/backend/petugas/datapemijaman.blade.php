@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Library Dashboard</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-<style>
-body {
-    background-color: #d2cbc4; 
-    margin: 0;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body>
-
-<div class="flex min-h-screen w-full">
-
-    <!-- SIDEBAR -->
-    <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col">
+<body class="bg-gray-100 overflow-hidden"> <div class="flex h-screen w-full"> <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col h-full">
         
         <div class="p-4 border-b">
             <h1 class="text-xl font-bold flex items-center gap-2">
@@ -32,32 +18,36 @@ body {
 
         <div class="text-center py-6 border-b">
             <img src="https://i.pravatar.cc/100" class="w-20 h-20 rounded-full mx-auto mb-3">
-            <p class="font-semibold">ANGGOTA :</p>
-            <p class="text-sm">QALEA ALZAHRAZ</p>
-            <p class="text-xs text-gray-500">AZHRAZLEA@GMAIL.COM</p>
+            <p class="font-semibold text-xs text-gray-400">PETUGAS :</p>
+            <p class="font-bold text-sm">{{ session('nama', 'QALEA ALZAHRAZ') }}</p>
+            <p class="text-[10px] text-gray-500 uppercase">{{ session('email', 'AZHRAZLEA@GMAIL.COM') }}</p>
         </div>
 
-        <!-- MENU -->
+         <!-- MENU -->
         <div class="p-4 space-y-3 text-sm">
 
             <a href="/dasboard" class="block">
                 <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
             </a>
 
-            <a href="/halamanbuku" class="block">
-                <div class="flex items-center gap-2">📊 <span>Halaman Buku</span></div>
-            </a>
-
             <a href="/peminjaman" class="block">
-                <div class="flex items-center gap-2">📦 <span>Peminjaman</span></div>
+                <div class="flex items-center gap-2">📦 <span>Data Peminjaman</span></div>
             </a>
 
             <a href="/pengembalian" class="block">
-                <div class="flex items-center gap-2">🔄 <span>Pengembalian</span></div>
+                <div class="flex items-center gap-2">🔄 <span>Data Pengembalian</span></div>
             </a>
 
             <a href="/catatan" class="block">
-                <div class="flex items-center gap-2">📈 <span>Catatan</span></div>
+                <div class="flex items-center gap-2">📈 <span>Denda</span></div>
+            </a>
+
+            <a href="/catatan" class="block">
+                <div class="flex items-center gap-2">📈 <span>Data Buku</span></div>
+            </a>
+
+            <a href="/catatan" class="block">
+                <div class="flex items-center gap-2">📈 <span>Data Anggota</span></div>
             </a>
 
             <a href="/login" class="block pt-4 text-red-500 hover:text-red-700">
@@ -70,7 +60,9 @@ body {
         </div>
     </div>
 
-    <!-- CONTENT -->
+
+data anggota
+      <!-- CONTENT -->
     <div class="flex-1 bg-[#d6d0cb] p-6">
 
         <div class="container-fluid">
@@ -81,6 +73,13 @@ body {
 
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3">
+                        <div>
+                            <label>
+                                <select class="form-select form-select-sm d-inline-block" style="width: auto;">
+                                    <option value="10">10</option>
+                                </select> records per page
+                            </label>
+                        </div>
                         <div>
                             <label>Search: 
                                 <input type="search" class="form-control form-control-sm d-inline-block" style="width: auto;">
@@ -95,9 +94,11 @@ body {
                                     <th>No</th>
                                     <th>Name</th>
                                     <th>Judul</th>
-                                    <th>Tanggal Pinjam</th>
-                                    <th>Jatuh Tempo</th>
-                                    <th>Status</th>
+                                    <th>Penerbit</th>
+                                    <th>Isbn</th>
+                                    <th>Lokasi</th>
+                                    <th>Jumlah Buku</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -105,12 +106,13 @@ body {
                                     <td class="text-center">1</td>
                                     <td>Dila</td>
                                     <td>Dilan</td>
-                                    <td>30-03-2026</td>
-                                    <td>27-04-2026</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 1</td>
+                                    <td class="text-center">20</td>
                                     <td class="text-center">
-                                        <button class="btn btn-primary btn-sm">
-                                        <i class="fa fa-check"></i> Dipinjam
-                                        </button>
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                             <tbody>
@@ -118,12 +120,13 @@ body {
                                     <td class="text-center">2</td>
                                     <td>Panji</td>
                                     <td>Pjok</td>
-                                    <td>15-03-2026</td>
-                                    <td>12-04-2026</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 3</td>
+                                    <td class="text-center">20</td>
                                     <td class="text-center">
-                                        <button class="btn btn-danger btn-sm">
-                                        <i class="fa fa-times-circle"></i> Ditolak
-                                        </button>
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -132,12 +135,13 @@ body {
                                     <td class="text-center">3</td>
                                     <td>Lala</td>
                                     <td>Laskar pelangi</td>
-                                    <td>20-03-2026</td>
-                                    <td>30-04-2026</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 2</td>
+                                    <td class="text-center">20</td>
                                     <td class="text-center">
-                                      <button class="btn btn-primary btn-sm">
-                                      <i class="fa fa-check"></i> Dipinjam
-                                      </button>
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -146,12 +150,13 @@ body {
                                     <td class="text-center">4</td>
                                     <td>Angga</td>
                                     <td>Angkasa</td>
-                                    <td>25-03-2026</td>
-                                    <td>20-04-2026</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 4</td>
+                                    <td class="text-center">20</td>
                                     <td class="text-center">
-                                        <button class="btn btn-primary btn-sm">
-                                        <i class="fa fa-check"></i> Dipinjam
-                                        </button>
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
                                     </td>
                                 </tr>
                             </tbody>

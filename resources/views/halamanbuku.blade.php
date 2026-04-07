@@ -2,161 +2,134 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library -</title>
+    <meta name="viewport" content="width=1280">
+    <title>Library Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@1,700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; background-color: #D9D9D9; overflow: hidden; }
-        .bg-sidebar { background-color: #E2E2E2; }
-        .bg-main-card { background-color: #C7C3BC; }
-        .active-menu { background-color: #D3CECA; border-radius: 40px 0 0 40px; font-weight: 700; }
-        
-        .custom-input {
-            transition: all 0.2s ease;
-        }
-        .custom-input:focus {
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transform: translateY(-1px);
-        }
-    </style>
 </head>
-<body class="h-screen w-screen flex items-center justify-center m-0 p-0">
-    <aside class="w-[20%] max-w-[280px] bg-sidebar flex flex-col border-r border-gray-400 h-full">
-    
-    <div class="p-6 border-b border-gray-400 flex items-center gap-3">
-        <div class="w-10 h-8 bg-gradient-to-br from-pink-400 to-purple-600 rounded-lg flex items-center justify-center shadow-md">
-            <i class="fa-solid fa-book-open text-white text-base"></i>
+
+<body class="bg-gray-100 overflow-hidden">
+
+<div class="flex h-screen w-[1280px] mx-auto">
+
+    <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col shrink-0">
+        
+        <div class="p-4 border-b">
+            <h1 class="text-xl font-bold flex items-center gap-2">
+                📖 LIBRARY
+            </h1>
         </div>
-        <span class="text-xl font-extrabold tracking-tighter">LIBRARY</span>
+
+        <div class="text-center py-6 border-b">
+            <img src="https://i.pravatar.cc/100" class="w-20 h-20 rounded-full mx-auto mb-3 border-2 border-gray-100">
+            <p class="font-semibold">ANGGOTA :</p>
+            <p class="text-sm">QALEA ALZAHRAZ</p>
+            <p class="text-xs text-gray-500">AZHRAZLEA@GMAIL.COM</p>
+        </div>
+<!-- MENU -->
+        <div class="p-4 space-y-3 text-sm">
+
+            <a href="/dasboard" class="block">
+                <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
+            </a>
+
+            <a href="/halamanbuku" class="block">
+                <div class="flex items-center gap-2">📊 <span>Halaman Buku</span></div>
+            </a>
+
+            <a href="/peminjaman" class="block">
+                <div class="flex items-center gap-2">📦 <span>Peminjaman</span></div>
+            </a>
+
+            <a href="/pengembalian" class="block">
+                <div class="flex items-center gap-2">🔄 <span>Pengembalian</span></div>
+            </a>
+
+            <a href="/catatan" class="block">
+                <div class="flex items-center gap-2">📈 <span>Catatan</span></div>
+            </a>
+
+            <a href="/login" class="block pt-4 text-red-500 hover:text-red-700">
+                <div class="flex items-center gap-2">
+                    <span>Logout</span>
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+            </a>
+
+        </div>
     </div>
 
-    <div class="p-6 text-center border-b border-gray-400">
-        <div class="w-20 h-20 mx-auto rounded-full bg-slate-900 overflow-hidden mb-3 border-2 border-white shadow-lg">
-            <img src="https://api.dicebear.com/7.x/bottts-neutral/svg?seed=qalea">
+    <main class="flex-1 h-screen overflow-y-auto p-6 bg-[#f4f7fa]">
+        
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800 uppercase">Halaman Buku</h1>
         </div>
-        <h3 class="font-bold text-[9px] tracking-widest text-gray-500 uppercase">ANGGOTA :</h3>
-        <p class="text-xs font-bold uppercase">Qalea Azahrz</p>
-        <p class="text-[9px] text-gray-500 italic">azhrzalea@gmail.com</p>
-    </div>
 
-    <nav class="flex-1 py-6">
-        <ul class="space-y-2">
-            <li class="px-8 py-2.5 flex items-center gap-4 text-xs ml-4">
-                <i class="fa-solid fa-house w-4"></i> Dhasboard
-            </li>
-            <li class="px-8 py-2.5 flex items-center gap-4 text-xs ml-4">
-                <i class="fa-solid fa-chart-simple w-4"></i> Data transaksi
-            </li>
-            <li class="px-8 py-2.5 flex items-center gap-4 text-xs ml-4">
-                <i class="fa-solid fa-cube w-4"></i> peminjaman
-            </li>
-            <li class="active-menu px-8 py-2.5 flex items-center gap-4 text-xs ml-4">
-                <i class="fa-solid fa-hand-holding w-4"></i> pengembalian
-            </li>
-            <li class="px-8 py-2.5 flex items-center gap-4 text-xs ml-4">
-                <i class="fa-solid fa-list w-4"></i> Catatan
-            </li>
-        </ul>
-    </nav>
-</aside>
-<div class="absolute top-8 right-12 space-y-1 cursor-pointer group">
-    <div class="w-10 h-1 bg-black rounded-full"></div>
-    <div class="w-10 h-1 bg-black rounded-full"></div>
-    <div class="w-10 h-1 bg-black rounded-full"></div>
+        <h2 class="font-bold text-gray-700 text-xs uppercase mb-4">Katalog Buku Terbaru</h2>
+        <div class="grid grid-cols-5 gap-4">
+            <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
+                <img src="{{ asset('img/angkasa.jpg') }}" class="w-full h-44 object-cover border-b">
+                <div class="p-3 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">Angkasa</h3>
+                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">bisnis</span></div>
+                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">bis01</span></div>
+                    </div>
+                    <div class="flex gap-1 mt-4">
+                        <button class="bg-[#00a65a] hover:bg-green-700 text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
+                        <button class="bg-[#dd4b39] hover:bg-red-700 text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Detail Buku</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
+                <img src="{{ asset('img/filosopi.jpg') }}" class="w-full h-44 object-cover border-b">
+                <div class="p-3 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">Filosofi Teras</h3>
+                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">filsafat</span></div>
+                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">fil01</span></div>
+                    </div>
+                    <div class="flex gap-1 mt-4">
+                        <button class="bg-[#00a65a] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
+                        <button class="bg-[#dd4b39] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">detail buku</button>
+                    </div>
+                </div>
+            </div>
+
+             <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
+                <img src="{{ asset('img/nek.jpg') }}" class="w-full h-44 object-cover border-b">
+                <div class="p-3 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">buku next</h3>
+                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">filsafat</span></div>
+                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">fil01</span></div>
+                    </div>
+                    <div class="flex gap-1 mt-4">
+                        <button class="bg-[#00a65a] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
+                        <button class="bg-[#dd4b39] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Detail Buku</button>
+                    </div>
+                </div>
+            </div>
+
+             <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
+               <img src="{{ asset('img/Eccedentesiast.jpg') }}" class="w-full h-44 object-cover border-b">
+                <div class="p-3 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">Dilan</h3>
+                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">filsafat</span></div>
+                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">fil01</span></div>
+                    </div>
+                    <div class="flex gap-1 mt-4">
+                        <button class="bg-[#00a65a] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
+                        <button class="bg-[#dd4b39] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">detail buku</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
 </div>
-<main class="flex-1 p-10 relative flex flex-col overflow-hidden">
-
-    <!-- top bar -->
-    <div class="flex items-center justify-between bg-[#D9D9D9] rounded-xl px-6 py-3 mb-6">
-        <i class="fa-solid fa-arrow-left text-lg cursor-pointer"></i>
-        <h2 class="font-serif text-sm tracking-widest">PUSTAKA DIGITAL</h2>
-        <div class="space-y-1">
-            <div class="w-8 h-1 bg-black rounded"></div>
-            <div class="w-8 h-1 bg-black rounded"></div>
-            <div class="w-8 h-1 bg-black rounded"></div>
-        </div>
-    </div>
-
-    <!-- content -->
-    <div class="flex gap-10">
-
-        <!-- cover -->
-        <div class="relative w-64 flex flex-col items-center">
-            <img src="otak.jpg"
-                class="rounded-lg shadow-lg z-10">
-
-            <!-- dekorasi garis -->
-            <div class="absolute inset-0 border-2 border-gray-500 rounded-lg scale-110"></div>
-        </div>
-
-        <!-- info kanan -->
-        <div class="flex-1">
-
-            <!-- judul -->
-            <div class="bg-[#E2E2E2] rounded-xl px-4 py-3 mb-6 w-fit">
-                <p class="text-xs font-bold">DILAN 1990</p>
-                <p class="text-[10px] italic">Pidi Baiq</p>
-            </div>
-
-            <!-- card deskripsi -->
-            <div class="bg-[#E2E2E2] rounded-2xl p-6 relative">
-
-                <!-- icon pojok -->
-                <i class="fa-regular fa-book absolute top-4 right-4 text-lg"></i>
-
-                <h3 class="text-xs font-bold text-center mb-2">DESKRIPSI:</h3>
-                <p class="text-[11px] text-center leading-relaxed px-6">
-                    Dilan: Dia adalah Dilanku tahun 1990 adalah sebuah novel karya Pidi Baiq yang diterbitkan oleh
-                    Penerbit Pastel Books (Mizan Group). Novel tersebut menjadi buku dengan penjualan terbaik di
-                    Gramedia, serta diadaptasi ke dalam sebuah film yang berjudul Dilan 1990.
-                </p>
-
-                <!-- statistik -->
-                <div class="grid grid-cols-2 gap-6 mt-6 px-10">
-
-                    <div class="bg-[#C7C3BC] rounded-xl p-4 text-center">
-                        <i class="fa-solid fa-book text-sm mb-1"></i>
-                        <p class="text-[9px]">HALAMAN</p>
-                        <p class="text-[10px] font-bold">333</p>
-                    </div>
-
-                    <div class="bg-[#C7C3BC] rounded-xl p-4 text-center">
-                        <i class="fa-solid fa-calendar text-sm mb-1"></i>
-                        <p class="text-[9px]">TAHUN TERBIT</p>
-                        <p class="text-[10px] font-bold">2014</p>
-                    </div>
-
-                    <div class="bg-[#C7C3BC] rounded-xl p-4 text-center">
-                        <i class="fa-solid fa-star text-sm mb-1"></i>
-                        <p class="text-[9px]">RATING</p>
-                        <p class="text-[10px] font-bold">0.0/9</p>
-                    </div>
-
-                    <div class="bg-[#C7C3BC] rounded-xl p-4 text-center">
-                        <i class="fa-solid fa-rotate text-sm mb-1"></i>
-                        <p class="text-[9px]">STOK TERSEDIA</p>
-                        <p class="text-[10px] font-bold">4</p>
-                    </div>
-                </div>
-
-                <!-- tombol -->
-                <div class="flex justify-center mt-6">
-                    <button class="bg-[#C7C3BC] px-10 py-2 rounded-xl text-xs font-semibold hover:bg-black hover:text-white transition">
-                        PINJAM
-                    </button>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-</main>
-  </div>
 
 </body>
 </html>

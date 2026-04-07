@@ -8,11 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
-<body class="bg-gray-100">
-
-<div class="flex min-h-screen w-full">
-
-    <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col">
+<body class="bg-gray-100 overflow-hidden"> <div class="flex h-screen w-full"> <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col h-full">
         
         <div class="p-4 border-b">
             <h1 class="text-xl font-bold flex items-center gap-2">
@@ -22,34 +18,39 @@
 
         <div class="text-center py-6 border-b">
             <img src="https://i.pravatar.cc/100" class="w-20 h-20 rounded-full mx-auto mb-3">
-            <p class="font-semibold">ANGGOTA :</p>
-            <p class="text-sm">{{ session('nama', 'GUEST') }}</p>
-            <p class="text-xs text-gray-500 uppercase">{{ session('email', 'GUEST@GMAIL.COM') }}</p>
+            <p class="font-semibold text-xs text-gray-400">PETUGAS :</p>
+            <p class="font-bold text-sm">{{ session('nama', 'QALEA ALZAHRAZ') }}</p>
+            <p class="text-[10px] text-gray-500 uppercase">{{ session('email', 'AZHRAZLEA@GMAIL.COM') }}</p>
         </div>
 
+         <!-- MENU -->
         <div class="p-4 space-y-3 text-sm">
 
-            <a href="/dasboard" class="block">
+            <a href="/dashboard-petugas" class="block">
                 <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
             </a>
 
-            <a href="/halamanbuku" class="block">
-                <div class="flex items-center gap-2">📊 <span>Halaman Buku</span></div>
+            <a href="/datapeminjaman" class="block">
+                <div class="flex items-center gap-2">📦 <span>Data Peminjaman</span></div>
             </a>
 
-            <a href="/peminjaman" class="block">
-                <div class="flex items-center gap-2">📦 <span>Peminjaman</span></div>
+            <a href="/datapengembalian" class="block">
+                <div class="flex items-center gap-2">🔄 <span>Data Pengembalian</span></div>
             </a>
 
-            <a href="/pengembalian" class="block">
-                <div class="flex items-center gap-2">🔄 <span>Pengembalian</span></div>
+            <a href="/denda" class="block">
+                <div class="flex items-center gap-2">📈 <span>Denda</span></div>
             </a>
 
-            <a href="/catatan" class="block">
-                <div class="flex items-center gap-2">📈 <span>Catatan</span></div>
+            <a href="/databuku" class="block">
+                <div class="flex items-center gap-2">📈 <span>Data Buku</span></div>
             </a>
 
-            <a href="{{ route('logout.proses') }}" class="block pt-4 text-red-500 hover:text-red-700">
+            <a href="/data-anggota" class="block">
+                <div class="flex items-center gap-2">📈 <span>Data Anggota</span></div>
+            </a>
+
+            <a href="/login" class="block pt-4 text-red-500 hover:text-red-700">
                 <div class="flex items-center gap-2">
                     <span>Logout</span>
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -59,8 +60,8 @@
         </div>
     </div>
 
-    <div class="flex-1 flex justify-center p-6">
-
+    <main class="flex-1 h-screen overflow-y-auto p-6 bg-[#f4f7fa]">
+        
         <div class="w-full max-w-[1200px] bg-[#d6d0cb] rounded-2xl shadow-inner p-8">
 
             <div class="flex items-center justify-between mb-6">
@@ -107,7 +108,9 @@
             </div>
 
         </div>
-    </div>
+
+        </div>
+    </main>
 </div>
 
 </body>
