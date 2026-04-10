@@ -41,13 +41,13 @@
                     <input type="password" name="password" class="form-control" placeholder="Password (min. 5 karakter)" required>
                 </div>
 
-                <button type="submit" class="btn-regis">DAFTAR SEKARANG</button>
+                  <button type="submit" class="btn-regis">DAFTAR SEKARANG</button>
             </form>
 
-            <div class="text-center mt-4 text-sm">
-                Sudah punya akun? <a href="/login" class="font-bold text-blue-700">Login di sini</a>
-            </div>
-        </div>
+
+<div class="login-footer" style="margin-top: 20px; text-align: center;">
+    <p>Sudah punya akun? <a href="{{ route('login') }}" style="color: #f671a1; font-weight: 700; text-decoration: none;">Login di sini</a></p>
+</div>
     </div>
 </body>
 </html>

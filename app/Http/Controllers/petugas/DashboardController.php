@@ -13,6 +13,12 @@ class DashboardController extends Controller
     public function index()
 {
     // Manggil file yang ada di folder resources/views/backend/petugas/dashboardpetugas.blade.php
-    return view('backend.petugas.dashboardpetugas');
+    return view('backend.petugas.dataanggota');
+}
+
+public function detailBuku()
+{
+    // Karena di screenshot lu filenya ada di luar folder, panggil nama filenya aja langsung
+    return view('detailbuku');
 }
 }

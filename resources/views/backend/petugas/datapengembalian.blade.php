@@ -26,11 +26,11 @@
          <!-- MENU -->
         <div class="p-4 space-y-3 text-sm">
 
-            <a href="/dasboard" class="block">
+            <a href="/dashboard-petugas" class="block">
                 <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
             </a>
 
-            <a href="/peminjaman" class="block">
+            <a href="/data-peminjaman" class="block">
                 <div class="flex items-center gap-2">📦 <span>Data Peminjaman</span></div>
             </a>
 
@@ -59,3 +59,131 @@
 
         </div>
     </div>
+
+      <!-- CONTENT -->
+    <div class="flex-1 bg-[#d6d0cb] p-6">
+
+        <div class="container-fluid">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <div class="text-success fw-bold">Data Peminjaman Buku</div>
+                </div>
+
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3">
+                        <div>
+                            <label>
+                                <select class="form-select form-select-sm d-inline-block" style="width: auto;">
+                                    <option value="10">10</option>
+                                </select> records per page
+                            </label>
+                        </div>
+                        <div>
+                            <label>Search: 
+                                <input type="search" class="form-control form-control-sm d-inline-block" style="width: auto;">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Judul</th>
+                                    <th>Penerbit</th>
+                                    <th>Isbn</th>
+                                    <th>Lokasi</th>
+                                    <th>Jumlah Buku</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td>Dila</td>
+                                    <td>Dilan</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 1</td>
+                                    <td class="text-center">20</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                                    </td>
+                                </tr>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">2</td>
+                                    <td>Panji</td>
+                                    <td>Pjok</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 3</td>
+                                    <td class="text-center">20</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">3</td>
+                                    <td>Lala</td>
+                                    <td>Laskar pelangi</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 2</td>
+                                    <td class="text-center">20</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                             <tbody>
+                                <tr>
+                                    <td class="text-center">4</td>
+                                    <td>Angga</td>
+                                    <td>Angkasa</td>
+                                    <td>Elexmedia</td>
+                                    <td>837383</td>
+                                    <td>Rak 4</td>
+                                    <td class="text-center">20</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-outline-secondary btn-sm"><i class="fa fa-sync"></i> Update</button>
+                                        <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>Showing 1 to 1 of 1 entries</div>
+                        <nav>
+                            <ul class="pagination pagination-sm mb-0">
+                                <li class="page-item disabled"><a class="page-link">Previous</a></li>
+                                <li class="page-item active"><a class="page-link">1</a></li>
+                                <li class="page-item disabled"><a class="page-link">Next</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <button class="btn btn-info text-white btn-sm">
+                    <i class="fa fa-print"></i> ImportExcelToMysql
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -20,7 +20,7 @@
             <img src="https://i.pravatar.cc/100" class="w-20 h-20 rounded-full mx-auto mb-3">
             <p class="font-semibold text-xs text-gray-400">PETUGAS :</p>
             <p class="font-bold text-sm">{{ session('nama', 'QALEA ALZAHRAZ') }}</p>
-            <p class="text-[10px] text-gray-500 uppercase">{{ session('email', 'AZHRAZLEA@GMAIL.COM') }}</p>
+            <p class="text-[10px] text-gray-500 uppercase">{{ session('email', 'PETUGAS@GMAIL.COM') }}</p>
         </div>
 
          <!-- MENU -->
@@ -60,58 +60,61 @@
         </div>
     </div>
 
-    <main class="flex-1 h-screen overflow-y-auto p-6 bg-[#f4f7fa]">
-        
-        <div class="w-full max-w-[1200px] bg-[#d6d0cb] rounded-2xl shadow-inner p-8">
-
-            <div class="flex items-center justify-between mb-6">
-                <h2 class="text-xl font-semibold">Dashboard</h2>
-
-                <div class="flex items-center gap-4 w-[500px]">
-                    <input type="text" placeholder="Hinted search text"
-                        class="px-4 py-2 rounded-full w-full outline-none">
-                    <div class="text-2xl cursor-pointer">☰</div>
-                </div>
+        <main class="flex-1 h-screen overflow-y-auto p-6 bg-[#f4f7fa]">
+            
+            <div class="flex justify-between items-center mb-6">
+                
+                <h1 class="text-2xl font-semibold text-gray-800">Dashboard</h1>
+                <p class="text-sm text-gray-500">🏠 Home > <span class="text-gray-400">Dashboard</span></p>
             </div>
 
-            <div class="grid grid-cols-4 gap-6 mb-6">
-
-                <div class="bg-blue-700 text-white p-4 rounded shadow">
-                    <p class="text-2xl font-bold">5</p>
-                    <p>Buku</p>
-                    <div class="mt-4 text-sm opacity-80 cursor-pointer">More info ➜</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white rounded shadow-sm flex overflow-hidden border-l-4 border-blue-500">
+                    <div class="bg-blue-500 p-4 flex items-center justify-center text-white w-20 shrink-0">
+                        <i class="fa-solid fa-book text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-[10px] uppercase text-gray-500 font-bold">Jumlah Buku</p>
+                        <p class="text-xl font-bold">5</p>
+                        <a href="#" class="text-[10px] text-blue-500 hover:underline">lihat selengkapnya ></a>
+                    </div>
                 </div>
 
-                <div class="bg-orange-500 text-white p-4 rounded shadow">
-                    <p class="text-2xl font-bold">5</p>
-                    <p>Total Peminjaman</p>
-                    <div class="mt-4 text-sm opacity-80 cursor-pointer">More info ➜</div>
+                <div class="bg-white rounded shadow-sm flex overflow-hidden border-l-4 border-red-500">
+                    <div class="bg-red-500 p-4 flex items-center justify-center text-white w-20 shrink-0">
+                        <i class="fa-solid fa-money-bill-1 text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-[10px] uppercase text-gray-500 font-bold">Jumlah Denda</p>
+                        <p class="text-xl font-bold">Rp.73,000</p>
+                        <a href="#" class="text-[10px] text-red-500 hover:underline">lihat selengkapnya ></a>
+                    </div>
                 </div>
 
-                <div class="bg-green-600 text-white p-4 rounded shadow">
-                    <p class="text-2xl font-bold">3</p>
-                    <p>Total Pengembalian</p>
-                    <div class="mt-4 text-sm opacity-80 cursor-pointer">More info ➜</div>
+                <div class="bg-white rounded shadow-sm flex overflow-hidden border-l-4 border-green-500">
+                    <div class="bg-green-600 p-4 flex items-center justify-center text-white w-20 shrink-0">
+                        <i class="fa-solid fa-user text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-[10px] uppercase text-gray-500 font-bold">Jumlah Peminjaman</p>
+                        <p class="text-xl font-bold">2</p>
+                        <a href="#" class="text-[10px] text-green-600 hover:underline">lihat selengkapnya ></a>
+                    </div>
                 </div>
 
-                <div class="bg-red-500 text-white p-4 rounded shadow">
-                    <p class="text-2xl font-bold">4</p>
-                    <p>Kategori Buku</p>
-                    <div class="mt-4 text-sm opacity-80 cursor-pointer">More info ➜</div>
+                <div class="bg-white rounded shadow-sm flex overflow-hidden border-l-4 border-orange-400">
+                    <div class="bg-orange-400 p-4 flex items-center justify-center text-white w-20 shrink-0">
+                        <i class="fa-solid fa-user text-3xl"></i>
+                    </div>
+                    <div class="p-4">
+                        <p class="text-[10px] uppercase text-gray-500 font-bold">Jumlah Pengembalian</p>
+                        <p class="text-xl font-bold">2</p>
+                        <a href="#" class="text-[10px] text-orange-400 hover:underline">lihat selengkapnya ></a>
+                    </div>
                 </div>
-
             </div>
+      </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-sm">
-                <h3 class="text-lg font-bold mb-2">Selamat Datang, {{ explode(' ', session('nama', 'Qalea'))[0] }}!</h3>
-                <p class="text-gray-600 text-sm">Di sini kamu bisa melihat koleksi buku, status peminjaman, dan riwayat pengembalian buku kamu secara real-time.</p>
-            </div>
-
-        </div>
-
-        </div>
-    </main>
-</div>
 
 </body>
 </html>

@@ -206,7 +206,7 @@
                     <label class="form-label">Email :</label>
                     <div class="form-control-wrapper">
                         <i class="fas fa-envelope form-control-icon"></i> 
-                        <input type="email" name="email" class="form-control" placeholder="masukkan email anda..." required value="{{ old('email') }}">
+                       <input type="email" name="email" class="form-control" placeholder="masukkan email anda..." required value="{{ old('email') }}">
                     </div>
                 </div>
 
@@ -225,7 +225,7 @@
             </form>
 
             <div class="login-footer">
-                Belum punya akun? <a href="#">Daftar di sini</a>
+                Belum punya akun? <a href="{{ route('register') }}">Daftar di sini</a>
             </div>
         </div>
     </div>

@@ -102,7 +102,7 @@
             </div>
 
             <div class="bg-white p-6 rounded-xl shadow-sm">
-                <h3 class="text-lg font-bold mb-2">Selamat Datang, {{ explode(' ', session('nama', 'Qalea'))[0] }}!</h3>
+                <h3 class="text-lg font-bold mb-2">Selamat Datang, {{ explode(' ', session('nama', 'Qalea','petugas'))[0] }}!</h3>
                 <p class="text-gray-600 text-sm">Di sini kamu bisa melihat koleksi buku, status peminjaman, dan riwayat pengembalian buku kamu secara real-time.</p>
             </div>
 

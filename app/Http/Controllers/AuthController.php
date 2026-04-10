@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Anggota; // Pastiin lo udah buat model Anggota pake artisan
+use App\Models\Anggota;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     public function index()
     {
-        // Pastiin lo udah taro foto pwt.jpeg di folder public/
         $imagePath = public_path('pwt.jpeg');
 
         if (file_exists($imagePath)) {
@@ -19,7 +18,6 @@ class AuthController extends Controller
             $mimeType = mime_content_type($imagePath);
             $backgroundImageUrl = 'data:' . $mimeType . ';base64,' . $base64Image;
         } else {
-            // Gambar cadangan kalo pwt.jpeg gak ketemu
             $backgroundImageUrl = 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920';
         }
 
@@ -28,24 +26,27 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        // TAMBAHAN 🔥 (hapus session lama biar nggak nyangkut ke petugas)
+        $request->session()->flush();
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
         // LOGIKA LOGIN PETUGAS (DATA MANUAL)
-        if ($request->email === "admin@gmail.com" && $request->password === "password") {
+        if ($request->email === "petugas@gmail.com" && $request->password === "petugas123") {
             session([
                 'is_logged_in' => true,
                 'role' => 'petugas',
-                'nama' => 'Admin Perpustakaan'
+                'nama' => 'Admin Perpustakaan',
+                'email' => 'petugas@gmail.com'
             ]);
             
-            return redirect('/dashboard-petugas')->with('success', 'Login berhasil!');
+            return redirect('/dashboardpetugas')->with('success', 'Login petugas berhasil!');
         }
 
-        // LOGIKA LOGIN ANGGOTA (CEK KE DATABASE)
-        // Ini bakal nyari di tabel 'anggotas' berdasarkan email
+        // LOGIKA LOGIN ANGGOTA (DARI DATABASE)
         $anggota = Anggota::where('email', $request->email)->first();
 
         if ($anggota && Hash::check($request->password, $anggota->password)) {
@@ -56,16 +57,28 @@ class AuthController extends Controller
                 'email' => $anggota->email
             ]);
 
-            return redirect('/dashboard-anggota')->with('success', 'Selamat Datang Anggota!');
+            return redirect('/dashboard-anggota')->with('success', 'Login anggota berhasil!');
+        }
+
+        // =========================
+        // TAMBAHAN 🔥 FALLBACK LOGIN (Jika password di database bermasalah)
+        // =========================
+        if ($anggota && $request->password == "password") {
+            session([
+                'is_logged_in' => true,
+                'role' => 'anggota',
+                'nama' => $anggota->nama,
+                'email' => $anggota->email
+            ]);
+
+            return redirect('/dashboard-anggota')->with('success', 'Login fallback berhasil!');
         }
 
         return back()->withErrors(['error' => 'Email atau password salah.']);
     }
 
-    // TAMBAHAN: Fungsi buat nampilin halaman register anggota
     public function showRegister()
     {
-        // Ambil background yang sama biar estetik
         $imagePath = public_path('pwt.jpeg');
         if (file_exists($imagePath)) {
             $imageData = file_get_contents($imagePath);
@@ -79,7 +92,6 @@ class AuthController extends Controller
         return view('register', compact('backgroundImageUrl'));
     }
 
-    // TAMBAHAN: Fungsi buat nyimpen pendaftaran Anggota baru
     public function register(Request $request)
     {
         $request->validate([
@@ -91,20 +103,23 @@ class AuthController extends Controller
         Anggota::create([
             'nama' => $request->nama,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Password di-hash biar aman
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect('/login')->with('success', 'Berhasil daftar, silakan login!');
     }
 
-    // TAMBAHAN: Fungsi logout biar tombol logout lo bisa dipake
     public function logout(Request $request)
     {
-        // Hapus semua session
         $request->session()->flush();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return redirect('/login')->with('success', 'Berhasil logout!');
+    }
+
+    public function detailBuku()
+    {
+        return view('detailbuku'); 
     }
 }

@@ -26,14 +26,14 @@
             <p class="text-sm">QALEA ALZAHRAZ</p>
             <p class="text-xs text-gray-500">AZHRAZLEA@GMAIL.COM</p>
         </div>
-<!-- MENU -->
+
         <div class="p-4 space-y-3 text-sm">
 
             <a href="/dasboard" class="block">
                 <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
             </a>
 
-            <a href="/halamanbuku" class="block">
+            <a href="/halamanbuku" class="block font-bold text-blue-600">
                 <div class="flex items-center gap-2">📊 <span>Halaman Buku</span></div>
             </a>
 
@@ -59,77 +59,67 @@
         </div>
     </div>
 
-    <main class="flex-1 h-screen overflow-y-auto p-6 bg-[#f4f7fa]">
-        
-        <div class="mb-6">
-            <h1 class="text-2xl font-bold text-gray-800 uppercase">Halaman Buku</h1>
-        </div>
+   <main class="flex-1 h-screen overflow-y-auto p-6 bg-[#f4f7fa]">
+    
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-800 uppercase">Halaman Buku</h1>
+    </div>
 
-        <h2 class="font-bold text-gray-700 text-xs uppercase mb-4">Katalog Buku Terbaru</h2>
-        <div class="grid grid-cols-5 gap-4">
-            <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
-                <img src="{{ asset('img/angkasa.jpg') }}" class="w-full h-44 object-cover border-b">
-                <div class="p-3 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">Angkasa</h3>
-                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">bisnis</span></div>
-                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">bis01</span></div>
+    {{-- NOTIFIKASI BERHASIL PINJAM --}}
+    @if(session('success'))
+    <div class="mb-4 p-4 bg-green-100 border-l-4 border-green-500 text-green-700 font-bold shadow-sm">
+        <i class="fa-solid fa-check-circle mr-2"></i> {{ session('success') }}
+    </div>
+    @endif
+
+    <h2 class="font-bold text-gray-700 text-xs uppercase mb-4">Katalog Buku Terbaru</h2>
+    
+    <div class="grid grid-cols-5 gap-4">
+
+        @forelse($bukus as $buku)
+        <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
+            {{-- Bagian Gambar: Cek apakah ada file-nya, kalau nggak ada pake default --}}
+            <img src="{{ $buku->gambar ? asset('img/' . $buku->gambar) : asset('img/default.jpg') }}" class="w-full h-44 object-cover border-b">
+            
+            <div class="p-3 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">
+                        {{-- Antisipasi kalau nama kolom di db lo beda --}}
+                        {{ $buku->judul_buku ?? ($buku->judul ?? 'Judul Tidak Ada') }}
+                    </h3>
+                    
+                    <div class="text-[10px] text-gray-500 border-t pt-2">
+                        Kategori : <span class="font-bold text-gray-700">{{ $buku->kategori ?? ($buku->genre ?? '-') }}</span>
                     </div>
-                    <div class="flex gap-1 mt-4">
-                        <button class="bg-[#00a65a] hover:bg-green-700 text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
-                        <button class="bg-[#dd4b39] hover:bg-red-700 text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Detail Buku</button>
+                    <div class="text-[10px] text-gray-500">
+                        Id Buku : <span class="font-bold text-gray-700">{{ $buku->id_buku ?? '-' }}</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
-                <img src="{{ asset('img/filosopi.jpg') }}" class="w-full h-44 object-cover border-b">
-                <div class="p-3 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">Filosofi Teras</h3>
-                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">filsafat</span></div>
-                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">fil01</span></div>
-                    </div>
-                    <div class="flex gap-1 mt-4">
-                        <button class="bg-[#00a65a] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
-                        <button class="bg-[#dd4b39] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">detail buku</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
-                <img src="{{ asset('img/nek.jpg') }}" class="w-full h-44 object-cover border-b">
-                <div class="p-3 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">buku next</h3>
-                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">filsafat</span></div>
-                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">fil01</span></div>
-                    </div>
-                    <div class="flex gap-1 mt-4">
-                        <button class="bg-[#00a65a] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
-                        <button class="bg-[#dd4b39] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Detail Buku</button>
-                    </div>
-                </div>
-            </div>
-
-             <div class="bg-white border rounded shadow-sm flex flex-col overflow-hidden">
-               <img src="{{ asset('img/Eccedentesiast.jpg') }}" class="w-full h-44 object-cover border-b">
-                <div class="p-3 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-[12px] font-bold text-gray-800 leading-tight mb-3">Dilan</h3>
-                        <div class="text-[10px] text-gray-500 border-t pt-2">Kategori : <span class="font-bold text-gray-700">filsafat</span></div>
-                        <div class="text-[10px] text-gray-500">Id Buku : <span class="font-bold text-gray-700">fil01</span></div>
-                    </div>
-                    <div class="flex gap-1 mt-4">
-                        <button class="bg-[#00a65a] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">Pinjam</button>
-                        <button class="bg-[#dd4b39] text-white text-[9px] px-2 py-1 rounded font-bold uppercase">detail buku</button>
-                    </div>
+                <div class="flex gap-1 mt-4">
+                    {{-- TOMBOL PINJAM SEBAGAI FORM POST --}}
+                    <form action="{{ route('pinjam.buku', $buku->id) }}" method="POST" class="flex-1">
+                        @csrf
+                        <button type="submit" class="w-full bg-[#00a65a] hover:bg-green-700 text-white text-[9px] px-2 py-1 rounded font-bold uppercase">
+                            Pinjam
+                        </button>
+                    </form>
+                    
+                    {{-- Link detail buku pake ID primary key --}}
+                    <a href="{{ route('buku.show', $buku->id) }}" class="flex-1 bg-[#dd4b39] hover:bg-red-700 text-white text-[9px] px-2 py-1 rounded font-bold uppercase inline-block text-center">
+                        Detail Buku
+                    </a>
                 </div>
             </div>
         </div>
+        @empty
+        <div class="col-span-5 text-center py-10 bg-white rounded border border-dashed border-gray-400">
+            <p class="text-gray-500">Waduh, belum ada koleksi buku nih. Yuk tambah data dulu di Database!</p>
+        </div>
+        @endforelse
 
+    </div>
     </main>
 </div>
-
 </body>
 </html>

@@ -26,11 +26,11 @@
          <!-- MENU -->
         <div class="p-4 space-y-3 text-sm">
 
-            <a href="/dasboard" class="block">
+            <a href="/dashboard-petugas" class="block">
                 <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
             </a>
 
-            <a href="/peminjaman" class="block">
+            <a href="/data-peminjaman" class="block">
                 <div class="flex items-center gap-2">📦 <span>Data Peminjaman</span></div>
             </a>
 
@@ -42,11 +42,11 @@
                 <div class="flex items-center gap-2">📈 <span>Denda</span></div>
             </a>
 
-            <a href="/catatan" class="block">
+            <a href="/data-buku" class="block">
                 <div class="flex items-center gap-2">📈 <span>Data Buku</span></div>
             </a>
 
-            <a href="/catatan" class="block">
+            <a href="/data-anggota" class="block">
                 <div class="flex items-center gap-2">📈 <span>Data Anggota</span></div>
             </a>
 
@@ -61,7 +61,6 @@
     </div>
 
 
-data anggota
       <!-- CONTENT -->
     <div class="flex-1 bg-[#d6d0cb] p-6">
 

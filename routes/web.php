@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\petugas\DashboardController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,58 +11,77 @@ use App\Http\Controllers\petugas\DashboardController;
 |--------------------------------------------------------------------------
 */
 
-// Halaman utama langsung nampilin login biar gak bingung
+// --- HALAMAN UTAMA & AUTH ---
 Route::get('/', [AuthController::class, 'index']);
-
-// --- BAGIAN LOGIN (PENTING: JANGAN DIUBAH) ---
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+Route::any('/proses-logout', [AuthController::class, 'logout'])->name('logout.proses');
 
-// --- ROUTE VIEW BIASA ---
-// (Ini file dasboard.blade.php punya lo yang buat Anggota)
-Route::view('/dasboard', 'dasboard')->name('dashboard.anggota'); 
+// --- ROUTE UNTUK ANGGOTA (USER BIASA) ---
+Route::get('/dashboard-anggota', function () {
+    return view('dasboard'); 
+})->name('dashboard.anggota');
 
-Route::view('/peminjaman', 'peminjaman');
+// Halaman Buku Anggota (Pake Controller biar datanya muncul)
+Route::get('/halamanbuku', [BukuController::class, 'index'])->name('halaman.buku');
+
+// ROUTE DETAIL BUKU
+Route::get('/buku/{id}', [BukuController::class, 'show'])->name('buku.show');
+
+// ROUTE PROSES PINJAM BUKU (Tambahan Baru)
+Route::post('/pinjam/{id}', [BukuController::class, 'pinjam'])->name('pinjam.buku');
+
+// Update: Arahin ke Controller biar data yang dipinjam muncul di tabel
+Route::get('/peminjaman', [BukuController::class, 'index'])->name('peminjaman.index');
+
 Route::view('/pengembalian', 'pengembalian');
-Route::view('/halamanbuku', 'halamanbuku');
 Route::view('/catatan', 'catatan');
 
-// Route Petugas Dashboard (Pake file view petugas, misal: dashboard_petugas)
-Route::get('/dashboard-petugas', [DashboardController::class, 'index'])->name('dashboard.petugas');
 
-// Route Denda
-Route::get('/denda', function () {
-    return view('denda');
-});
+// --- ROUTE UNTUK PETUGAS ---
+Route::get('/dashboardpetugas', function () {
+    return view('backend.petugas.dashboardpetugas');
+})->name('dashboard.petugas');
 
-// Route Logout
-Route::get('/logout', function () {
-    return redirect('/login');
-});
+// KELOLA BUKU (PETUGAS)
+Route::get('/databuku', [BukuController::class, 'index'])->name('buku.tabel'); 
+Route::post('/buku-store', [BukuController::class, 'store'])->name('buku.store');
+Route::delete('/buku-delete/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
 
-// Contoh kalau pake closure
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+// DATA LAINNYA (PETUGAS)
+Route::get('/data-anggota', function () { 
+    return view('backend.petugas.dataanggota');
+})->name('data.anggota');
 
-// Atau kalau pake Controller
+Route::get('/datapeminjaman', function () {
+    return view('backend.petugas.datapeminjaman');
+})->name('data.peminjaman');
+
+Route::get('/datapengembalian', function () {
+    return view('backend.petugas.datapengembalian');
+})->name('data.pengembalian');
+
+Route::get('/dendapetugas', function () { 
+    return view('backend.petugas.dendapetugas');
+})->name('denda.petugas');
+
+
+// --- ROUTE PENDUKUNG ---
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/simpan-anggota', [AuthController::class, 'simpanAnggota'])->name('simpan.anggota');
 
+Route::get('/frompeminjaman', function () {
+    return view('frompeminjaman'); 
+})->name('peminjaman.form');
 
-// --- TAMBAHAN BIAR LOGIKA ANGGOTA & LOGOUT JALAN ---
+Route::post('/peminjaman-store', function () {
+    return back()->with('success', 'Data peminjaman berhasil diproses!');
+})->name('peminjaman.store');
 
-// Route Dashboard khusus Anggota (manggil file dasboard.blade.php lo)
-Route::get('/dashboard-anggota', function () {
-    return view('dasboard'); 
+
+// --- FALLBACK (BIAR GAK ERROR 404 JELEK) ---
+Route::fallback(function () {
+    return redirect('/login');
 });
-
-// Route Tampilkan Halaman Register (Ini yang tadi kurang)
-Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-
-// Route Proses Registrasi Anggota
-Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
-
-// Route Logout yang bener (pake fungsi logout di Controller biar session kehapus)
-Route::any('/proses-logout', [AuthController::class, 'logout'])->name('logout.proses');
-
