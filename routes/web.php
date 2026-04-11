@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\petugas\AnggotaController; // Tambahan buat handle data anggota
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,17 +52,14 @@ Route::post('/buku-store', [BukuController::class, 'store'])->name('buku.store')
 Route::delete('/buku-delete/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
 
 // DATA LAINNYA (PETUGAS)
-Route::get('/data-anggota', function () { 
-    return view('backend.petugas.dataanggota');
-})->name('data.anggota');
+// FIX: Diarahkan ke AnggotaController biar data user/akun tersinkron dan muncul di tabel
+Route::get('/data-anggota', [AnggotaController::class, 'index'])->name('data.anggota');
 
-Route::get('/datapeminjaman', function () {
-    return view('backend.petugas.datapeminjaman');
-})->name('data.peminjaman');
+// FIX: Diarahkan ke Controller supaya variabel $peminjamans terdefinisi
+Route::get('/datapeminjaman', [BukuController::class, 'dataPeminjaman'])->name('data.peminjaman');
 
-Route::get('/datapengembalian', function () {
-    return view('backend.petugas.datapengembalian');
-})->name('data.pengembalian');
+// FIX: Diarahkan ke fungsi dataPengembalian (fungsi baru) biar datanya gak sama dengan peminjaman
+Route::get('/datapengembalian', [BukuController::class, 'dataPengembalian'])->name('data.pengembalian');
 
 Route::get('/dendapetugas', function () { 
     return view('backend.petugas.dendapetugas');

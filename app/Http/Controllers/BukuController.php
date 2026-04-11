@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Buku; 
 use App\Models\Peminjaman; // Tambahin ini biar bisa akses tabel peminjaman
+use Illuminate\Support\Facades\Storage; // Tambahan untuk urusan hapus/simpan file
 
 class BukuController extends Controller
 {
@@ -41,8 +42,16 @@ class BukuController extends Controller
             'penerbit' => 'required',
             'tahun' => 'required|numeric',
             'kategori' => 'nullable', // Tambahan validasi kategori
-            'gambar' => 'nullable',   // Tambahan validasi gambar
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Tambahan validasi file gambar
         ]);
+
+        // LOGIKA UPLOAD GAMBAR BARU
+        $nama_file = null;
+        if ($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            $file->storeAs('public/cover', $nama_file); // Simpan ke storage/app/public/cover
+        }
 
         Buku::create([
             'id_buku' => $request->id_buku,
@@ -51,7 +60,7 @@ class BukuController extends Controller
             'penerbit' => $request->penerbit,
             'tahun' => $request->tahun,
             'kategori' => $request->kategori, // Pastikan kategori ikut kesimpan
-            'gambar' => $request->gambar,     // Pastikan nama file gambar ikut kesimpan
+            'gambar' => $nama_file,     // Pastikan nama file gambar hasil upload kesimpan
         ]);
 
         return redirect('/databuku')->with('success', 'Buku baru berhasil ditambahin!');
@@ -69,7 +78,9 @@ class BukuController extends Controller
         $buku->penerbit = $buku->penerbit ?? '-';
         $buku->tahun = $buku->tahun ?? '-';
         $buku->kategori = $buku->kategori ?? '-'; // Tambahan antisipasi kategori kosong
-        $buku->gambar = $buku->gambar ?? 'default.jpg';
+        
+        // Cek apakah ada file gambar, kalau nggak pake placeholder
+        $buku->gambar = $buku->gambar ? asset('storage/cover/' . $buku->gambar) : 'https://placehold.co/400x600?text=No+Cover';
 
         return view('detailbuku', compact('buku'));
     }
@@ -90,10 +101,24 @@ class BukuController extends Controller
             'pengarang' => 'required',
             'penerbit' => 'required',
             'tahun' => 'required|numeric',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $buku = Buku::findOrFail($id);
-        $buku->update($request->all());
+        $data = $request->all();
+
+        // LOGIKA UPDATE GAMBAR (Hapus yang lama kalau upload baru)
+        if ($request->hasFile('gambar')) {
+            if ($buku->gambar) {
+                Storage::delete('public/cover/' . $buku->gambar);
+            }
+            $file = $request->file('gambar');
+            $nama_file = time() . "_" . $file->getClientOriginalName();
+            $file->storeAs('public/cover', $nama_file);
+            $data['gambar'] = $nama_file;
+        }
+
+        $buku->update($data);
 
         return redirect('/databuku')->with('success', 'Data buku berhasil diperbarui!');
     }
@@ -102,6 +127,12 @@ class BukuController extends Controller
     public function destroy($id)
     {
         $buku = Buku::findOrFail($id);
+
+        // Hapus file gambarnya juga di folder biar gak menuhin storage
+        if ($buku->gambar) {
+            Storage::delete('public/cover/' . $buku->gambar);
+        }
+
         $buku->delete();
 
         return redirect('/databuku')->with('success', 'Buku berhasil dihapus!');
@@ -123,5 +154,25 @@ class BukuController extends Controller
         ]);
         
         return redirect('/halamanbuku')->with('success', 'Buku ' . $buku->judul_buku . ' berhasil lo pinjam! Cek menu Peminjaman ya.');
+    }
+
+    // 8. TAMPILIN DATA PEMINJAMAN KHUSUS PETUGAS (TAMBAHAN BARU)
+    public function dataPeminjaman()
+    {
+        // Ambil data yang statusnya 'Dipinjam' aja biar rapi
+        $peminjamans = Peminjaman::where('status', 'Dipinjam')->get(); 
+        
+        // Kirim ke view petugas peminjaman
+        return view('backend.petugas.datapeminjaman', compact('peminjamans'));
+    }
+
+    // 9. TAMPILIN DATA PENGEMBALIAN KHUSUS PETUGAS (TAMBAHAN BIAR GAK SAMA)
+    public function dataPengembalian()
+    {
+        // Ambil data yang statusnya sudah 'Dikembalikan'
+        $peminjamans = Peminjaman::where('status', 'Dikembalikan')->get(); 
+        
+        // Kirim ke view petugas pengembalian
+        return view('backend.petugas.datapengembalian', compact('peminjamans'));
     }
 }

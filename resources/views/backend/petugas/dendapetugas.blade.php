@@ -6,51 +6,55 @@
     <title>Library Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
 
-<body class="bg-gray-100 overflow-hidden"> <div class="flex h-screen w-full"> <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col h-full">
-        
-        <div class="p-4 border-b">
-            <h1 class="text-xl font-bold flex items-center gap-2">
-                📖 LIBRARY
-            </h1>
-        </div>
+<body class="bg-gray-100 overflow-hidden"> 
+    <div class="flex h-screen w-full"> 
+        <div class="w-[260px] bg-white border-r border-gray-300 flex flex-col h-full shrink-0">
+            <div class="p-4 border-b">
+                <h1 class="text-xl font-bold flex items-center gap-2">
+                    📖 LIBRARY
+                </h1>
+            </div>
 
-        <div class="text-center py-6 border-b">
-            <img src="https://i.pravatar.cc/100" class="w-20 h-20 rounded-full mx-auto mb-3">
-            <p class="font-semibold text-xs text-gray-400">PETUGAS :</p>
-            <p class="font-bold text-sm">{{ session('nama', 'QALEA ALZAHRAZ') }}</p>
-            <p class="text-[10px] text-gray-500 uppercase">{{ session('email', 'AZHRAZLEA@GMAIL.COM') }}</p>
-        </div>
+            <div class="text-center py-6 border-b">
+                <img src="https://i.pravatar.cc/100" class="w-20 h-20 rounded-full mx-auto mb-3 border-2 border-gray-200">
+                <p class="font-semibold text-xs text-gray-400">PETUGAS :</p>
+                <p class="font-bold text-sm">{{ session('nama', 'QALEA ALZAHRAZ') }}</p>
+                <p class="text-[10px] text-gray-500 uppercase">{{ session('email', 'AZHRAZLEA@GMAIL.COM') }}</p>
+            </div>
 
-         <!-- MENU -->
-        <div class="p-4 space-y-3 text-sm">
+             <div class="p-4 space-y-3 text-sm">
 
-            <a href="/dasboard" class="block">
+            <a href="/dashboard-petugas" class="block">
                 <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
             </a>
 
-            <a href="/peminjaman" class="block">
+            <a href="/datapeminjaman" class="block">
                 <div class="flex items-center gap-2">📦 <span>Data Peminjaman</span></div>
             </a>
 
-            <a href="/pengembalian" class="block">
+            <a href="/datapengembalian" class="block">
                 <div class="flex items-center gap-2">🔄 <span>Data Pengembalian</span></div>
             </a>
 
-            <a href="/catatan" class="block">
+            <a href="/dendapetugas" class="block">
                 <div class="flex items-center gap-2">📈 <span>Denda</span></div>
             </a>
 
-            <a href="/catatan" class="block">
+            <a href="/databuku" class="block">
                 <div class="flex items-center gap-2">📈 <span>Data Buku</span></div>
             </a>
 
-            <a href="/catatan" class="block">
+            <a href="/data-anggota" class="block">
                 <div class="flex items-center gap-2">📈 <span>Data Anggota</span></div>
             </a>
 
-            <a href="/login" class="block pt-4 text-red-500 hover:text-red-700">
+            <a href="{{ route('logout.proses') }}" class="block pt-4 text-red-500 hover:text-red-700">
                 <div class="flex items-center gap-2">
                     <span>Logout</span>
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -58,8 +62,10 @@
             </a>
 
         </div>
-    </div>
-     <div class="bg-white rounded shadow-sm border border-gray-200">
+        </div>
+
+        <main class="flex-1 bg-[#d6d0cb] p-6 overflow-auto">
+            <div class="bg-white rounded shadow-sm border border-gray-200">
                 <div class="p-4 border-b flex justify-between items-center bg-gray-50">
                     <h3 class="font-bold text-gray-700 text-sm">Data Transaksi Terkini</h3>
                 </div>
@@ -121,4 +127,4 @@
         </main>
     </div>
 </body>
-        </html>
+</html>

@@ -6,6 +6,10 @@
     <title>Data Buku - Petugas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
 </head>
 
 <body class="bg-gray-100 overflow-hidden"> 
@@ -21,14 +25,40 @@
                 <p class="font-bold text-sm">QALEA ALZAHRAZ</p>
             </div>
 
-            <div class="p-4 space-y-3 text-sm">
-                <a href="/dashboardpetugas" class="block text-gray-600 hover:text-blue-600">🏠 Dashboard</a>
-                <a href="/peminjaman" class="block text-gray-600">📦 Data Peminjaman</a>
-                <a href="/pengembalian" class="block text-gray-600">🔄 Data Pengembalian</a>
-                <a href="/databuku" class="block font-bold text-blue-600">📚 Data Buku</a>
-                <a href="/data-anggotas" class="block text-gray-600">👥 Data Anggota</a>
-                <a href="/login" class="block pt-4 text-red-500">Logout <i class="fa-solid fa-right-from-bracket"></i></a>
-            </div>
+        <div class="p-4 space-y-3 text-sm">
+
+                    <a href="/dashboard-petugas" class="block">
+                        <div class="flex items-center gap-2">🏠 <span>Dashboard</span></div>
+                    </a>
+
+                    <a href="/datapeminjaman" class="block ">
+                        <div class="flex items-center gap-2">📦 <span>Data Peminjaman</span></div>
+                    </a>
+
+                    <a href="/datapengembalian" class="block">
+                        <div class="flex items-center gap-2">🔄 <span>Data Pengembalian</span></div>
+                    </a>
+
+                    <a href="/dendapetugas" class="block">
+                        <div class="flex items-center gap-2">📈 <span>Denda</span></div>
+                    </a>
+
+                    <a href="/databuku" class="block">
+                        <div class="flex items-center gap-2">📈 <span>Data Buku</span></div>
+                    </a>
+
+                    <a href="/data-anggota" class="block">
+                        <div class="flex items-center gap-2">📈 <span>Data Anggota</span></div>
+                    </a>
+
+                    <a href="{{ route('logout.proses') }}" class="block pt-4 text-red-500 hover:text-red-700">
+                        <div class="flex items-center gap-2">
+                            <span>Logout</span>
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </div>
+                    </a>
+
+        </div>
         </div>
 
         <main class="flex-1 h-screen overflow-y-auto p-6 bg-[#f4f7fa]">
@@ -65,8 +95,13 @@
                             <td class="px-4 py-3 border">{{ $buku->penerbit }} ({{ $buku->tahun }})</td>
                             <td class="px-4 py-3 border text-center">
                                 <div class="flex justify-center gap-2">
+                                    {{-- Tombol Detail --}}
+                                    <button onclick="openDetail('{{ $buku->id_buku }}', '{{ $buku->judul_buku }}', '{{ $buku->pengarang }}', '{{ $buku->penerbit }}', '{{ $buku->tahun }}')" 
+                                            class="bg-blue-500 text-white px-2 py-1 rounded text-[10px] uppercase">Detail</button>
+                                    
                                     <button class="bg-yellow-500 text-white px-2 py-1 rounded text-[10px] uppercase">Edit</button>
-                                    <form action="{{ route('buku.destroy', $buku->id) }}" method="POST">
+                                    
+                                    <form action="{{ route('buku.destroy', $buku->id) }}" method="POST" class="inline">
                                         @csrf @method('DELETE')
                                         <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded text-[10px] uppercase" onclick="return confirm('Yakin hapus?')">Hapus</button>
                                     </form>
@@ -122,7 +157,39 @@
         </div>
     </div>
 
+    <div id="modalDetail" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-[110]">
+        <div class="bg-white rounded-lg shadow-xl w-[400px] overflow-hidden">
+            <div class="bg-gray-800 p-4 text-white flex justify-between">
+                <h3 class="font-bold uppercase text-sm">Informasi Detail Buku</h3>
+                <button onclick="closeDetailModal()" class="text-white text-xl">&times;</button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div class="flex flex-col items-center pb-4 border-b">
+                    <div class="w-20 h-24 bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300 rounded mb-2">
+                        <i class="fa-solid fa-book text-3xl text-gray-300"></i>
+                    </div>
+                    <h4 id="det-judul" class="font-bold text-blue-600 text-center uppercase">Judul Buku</h4>
+                </div>
+                <div class="grid grid-cols-2 gap-y-3 text-xs">
+                    <span class="text-gray-400 font-bold uppercase">ID Buku</span>
+                    <span id="det-id" class="text-gray-700 font-mono text-right">-</span>
+                    
+                    <span class="text-gray-400 font-bold uppercase">Pengarang</span>
+                    <span id="det-pengarang" class="text-gray-700 text-right">-</span>
+                    
+                    <span class="text-gray-400 font-bold uppercase">Penerbit</span>
+                    <span id="det-penerbit" class="text-gray-700 text-right">-</span>
+                    
+                    <span class="text-gray-400 font-bold uppercase">Tahun Terbit</span>
+                    <span id="det-tahun" class="text-gray-700 text-right">-</span>
+                </div>
+                <button onclick="closeDetailModal()" class="w-full mt-4 bg-gray-800 text-white py-2 rounded text-xs font-bold uppercase">Tutup</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Fungsi Modal Tambah
         function openModal() {
             document.getElementById('modalTambah').classList.remove('hidden');
             document.getElementById('modalTambah').classList.add('flex');
@@ -130,6 +197,22 @@
         function closeModal() {
             document.getElementById('modalTambah').classList.add('hidden');
             document.getElementById('modalTambah').classList.remove('flex');
+        }
+
+        // Fungsi Modal Detail
+        function openDetail(id, judul, pengarang, penerbit, tahun) {
+            document.getElementById('det-id').innerText = id;
+            document.getElementById('det-judul').innerText = judul;
+            document.getElementById('det-pengarang').innerText = pengarang;
+            document.getElementById('det-penerbit').innerText = penerbit;
+            document.getElementById('det-tahun').innerText = tahun;
+            
+            document.getElementById('modalDetail').classList.remove('hidden');
+            document.getElementById('modalDetail').classList.add('flex');
+        }
+        function closeDetailModal() {
+            document.getElementById('modalDetail').classList.add('hidden');
+            document.getElementById('modalDetail').classList.remove('flex');
         }
     </script>
 </body>
